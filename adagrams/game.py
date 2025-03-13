@@ -1,7 +1,7 @@
 from random import randint
 
 def draw_letters():
-    "it will be awesome!"
+    #it will be awesome!
     pass
 
 def uses_available_letters(word, letter_bank):
