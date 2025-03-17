@@ -80,15 +80,22 @@ def score_word(word):
 
     return score
 
-'''
-def get_highest_word_score(word_list):
+
+def get_highest_word_score(word_list): 
     highest_word_score = 0
-    # highest_word_score_data: str
+    highest_word_score_data = ""
+    
     for current_word in word_list:
         current_word_score = score_word(current_word)
-        if highest_word_score < current_word_score:
+        if (highest_word_score < current_word_score) and (len(highest_word_score_data) != 10):
             highest_word_score = current_word_score
             highest_word_score_data = current_word
+        
+        elif highest_word_score == current_word_score and len(highest_word_score_data) == len(current_word):
+            continue
+
+        elif (highest_word_score <= current_word_score) and (len(highest_word_score_data) == 10) and (len(current_word) != 10):
+            continue
 
         elif highest_word_score == current_word_score and len(current_word) == 10:
             highest_word_score = current_word_score
@@ -98,17 +105,14 @@ def get_highest_word_score(word_list):
             highest_word_score = current_word_score
             highest_word_score_data = current_word
 
-# #it is a tie
-#         elif highest_word_score == current_word_score and len(current_word) == 10 == len(highest_word_score_data):
-#             highest_word_score = current_word_score
-#             highest_word_score_data = current_word
+    return highest_word_score_data,highest_word_score
 
 
-        return (highest_word_score_data, highest_word_score) #("...", int) 
-
+# word_list = ["zodiack", "generation", "now", "python"]
+# word_list = ["AAAAAAAAAA", "BBBBBB"]
+word_list = ["BBBBBB", "AAAAAAAAAA"]
+print(get_highest_word_score(word_list))
 '''
-
-
 
 # letter_bank_global = draw_letters()
 # print(f"letter_bank =", letter_bank_global)
@@ -127,7 +131,7 @@ def get_highest_word_score(word_list):
 # uses_available_letters(word, letter_bank)
 # print(uses_available_letters(word, letter_bank_global))
 
-'''
+
 word = "zodiack"
 letter_bank_globa = ['g', 'e', 'n', 'e', 'r', 'a', 't', 'i', 'o', 'n'] #"generation"
 print(score_word(word))
