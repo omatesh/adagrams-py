@@ -35,29 +35,25 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    print(f"letter_bank_param:", letter_bank)
+    # print(f"letter_bank_param:", letter_bank)
     if not word.isalpha():
-        print(f"print: not word.isalpha():")
         return False
-    else:
-        word = word.upper()
-        print(f"word.upper()", word)
+    word = word.upper()
 
+    letter_bank_copy = letter_bank[:]
 
     word_array = list(word)
     for i in range(len(word_array)):
-        if word_array[i] in letter_bank:
-            letter_bank.remove(word_array[i])
+        if word_array[i] in letter_bank_copy:
+            letter_bank_copy.remove(word_array[i])
         else:
             return False
     return True
 
     
-'''
-def score_word():
-    score = 0
-    word.isupper() and word.isalpha()
 
+def score_word(word):
+    score = 0
     score_chart = {
         'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
         'D': 2, 'G': 2,
@@ -68,14 +64,23 @@ def score_word():
         'Q': 10, 'Z': 10
     }
 
-    if len(word) > 6:
-        score += 8
+    if not word.isalpha():
+        return False
+    word = word.upper()
     
     for letter in word:
         score += score_chart[letter]
+        print(f"{letter} and its score {score}")
+
+    if len(word) > 6:
+        score += 8
+        print(f"added 8 to score")
+    
+    print(f"{word} and its score {score}")
+
     return score
 
-
+'''
 def get_highest_word_score(word_list):
     highest_word_score = 0
     # highest_word_score_data: str
@@ -102,16 +107,28 @@ def get_highest_word_score(word_list):
         return (highest_word_score_data, highest_word_score) #("...", int) 
 
 '''
-letter_bank_global = draw_letters()
-print(f"letter_bank =", letter_bank_global)
+
+
+
+# letter_bank_global = draw_letters()
+# print(f"letter_bank =", letter_bank_global)
 # word = "now"
 # letter_bank = list("nowdoing")
 
-# word = "now"
+
+# word = "resonating"
+# word = "resonating"
+
 # word = "AO"
-word = "ao"
+# word = "ao"
 # print(f"word:", word)
 # letter_bank = list("doing")
 
 # uses_available_letters(word, letter_bank)
-print(uses_available_letters(word, letter_bank_global))
+# print(uses_available_letters(word, letter_bank_global))
+
+'''
+word = "zodiack"
+letter_bank_globa = ['g', 'e', 'n', 'e', 'r', 'a', 't', 'i', 'o', 'n'] #"generation"
+print(score_word(word))
+'''
