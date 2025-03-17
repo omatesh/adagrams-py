@@ -35,22 +35,35 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    # print(f"letter_bank_param:", letter_bank)
+
     if not word.isalpha():
         return False
     word = word.upper()
 
-    letter_bank_copy = letter_bank[:]
-
     word_array = list(word)
-    for i in range(len(word_array)):
-        if word_array[i] in letter_bank_copy:
-            letter_bank_copy.remove(word_array[i])
+    letter_bank_dict = {}
+
+    for letter in letter_bank:
+        letter_bank_dict[letter] = letter_bank_dict.get(letter, 0) + 1
+        
+    for letter in word:
+        if letter_bank_dict.get(letter, 0) >= 1:
+            letter_bank_dict[letter] = letter_bank_dict.get(letter, 0) - 1
         else:
             return False
     return True
 
-    
+#Option 2
+    # letter_bank_copy = letter_bank[:]
+
+    # word_array = list(word)
+    # for i in range(len(word_array)):
+    #     if word_array[i] in letter_bank_copy:
+    #         letter_bank_copy.remove(word_array[i])
+    #     else:
+    #         return False
+    # return True
+
 
 def score_word(word):
     score = 0
@@ -110,8 +123,8 @@ def get_highest_word_score(word_list):
 
 # word_list = ["zodiack", "generation", "now", "python"]
 # word_list = ["AAAAAAAAAA", "BBBBBB"]
-word_list = ["BBBBBB", "AAAAAAAAAA"]
-print(get_highest_word_score(word_list))
+# word_list = ["BBBBBB", "AAAAAAAAAA"]
+# print(get_highest_word_score(word_list))
 '''
 
 # letter_bank_global = draw_letters()
@@ -119,20 +132,20 @@ print(get_highest_word_score(word_list))
 # word = "now"
 # letter_bank = list("nowdoing")
 
-
-# word = "resonating"
+'''
+word = "resting"
 # word = "resonating"
 
 # word = "AO"
 # word = "ao"
 # print(f"word:", word)
-# letter_bank = list("doing")
 
-# uses_available_letters(word, letter_bank)
+letter_bank = list("resonating")
+
+print(uses_available_letters(word, letter_bank))
 # print(uses_available_letters(word, letter_bank_global))
 
 
-word = "zodiack"
-letter_bank_globa = ['g', 'e', 'n', 'e', 'r', 'a', 't', 'i', 'o', 'n'] #"generation"
-print(score_word(word))
-'''
+# word = "zodiack"
+# letter_bank_globa = ['g', 'e', 'n', 'e', 'r', 'a', 't', 'i', 'o', 'n'] #"generation"
+# print(score_word(word))
